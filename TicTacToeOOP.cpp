@@ -228,6 +228,13 @@ public:
         std::cout << player.getName()<<", please enter coordinates:"<<"\n";
         int i, j;
         std::cin >> i >> j;
+        if (std::cin.fail())
+        {
+            std::cout << "That's not a valid input. " << "\n";
+            std::cin.clear();
+            std::cin.ignore(100000, '\n');
+            return takeNextTurn(gameBoard, player);
+        }
         if (coordinatesInsideBoard(i,j) && gameBoard.getBoardTile(i,j)->isTileEmpty)
         {
             gameBoard.inputBoard(i, j, player.get_xZero());
